@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.NatureMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.NaturePO">
+    <id column="nature_id" jdbcType="INTEGER" property="natureId" />
+    <result column="name" jdbcType="CHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    nature_id, `name`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_nature
+    where nature_id = #{natureId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_nature
+    where nature_id = #{natureId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.NaturePO">
+    insert into t_nature (nature_id, `name`)
+    values (#{natureId,jdbcType=INTEGER}, #{name,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.NaturePO">
+    insert into t_nature
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="natureId != null">
+        nature_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="natureId != null">
+        #{natureId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.NaturePO">
+    update t_nature
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=CHAR},
+      </if>
+    </set>
+    where nature_id = #{natureId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.NaturePO">
+    update t_nature
+    set `name` = #{name,jdbcType=CHAR}
+    where nature_id = #{natureId,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_nature order by nature_id
+  </select>
+</mapper>

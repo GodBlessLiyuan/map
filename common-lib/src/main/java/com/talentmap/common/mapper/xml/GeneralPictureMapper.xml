@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.GeneralPictureMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.GeneralPicturePO">
+    <id column="gp_id" jdbcType="BIGINT" property="gpId" />
+    <result column="tg_id" jdbcType="BIGINT" property="tgId" />
+    <result column="picture" jdbcType="CHAR" property="picture" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gp_id, tg_id, picture, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_general_picture
+    where gp_id = #{gpId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_general_picture
+    where gp_id = #{gpId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.GeneralPicturePO">
+    insert into t_general_picture (gp_id, tg_id, picture, 
+      create_time)
+    values (#{gpId,jdbcType=BIGINT}, #{tgId,jdbcType=BIGINT}, #{picture,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.GeneralPicturePO">
+    insert into t_general_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gpId != null">
+        gp_id,
+      </if>
+      <if test="tgId != null">
+        tg_id,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gpId != null">
+        #{gpId,jdbcType=BIGINT},
+      </if>
+      <if test="tgId != null">
+        #{tgId,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.GeneralPicturePO">
+    update t_general_picture
+    <set>
+      <if test="tgId != null">
+        tg_id = #{tgId,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gp_id = #{gpId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.GeneralPicturePO">
+    update t_general_picture
+    set tg_id = #{tgId,jdbcType=BIGINT},
+      picture = #{picture,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where gp_id = #{gpId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into t_general_picture (gp_id, tg_id, picture,
+    create_time) values
+    <foreach collection="list" item="po" index="index" separator=",">
+      (#{po.gpId,jdbcType=BIGINT}, #{po.tgId,jdbcType=BIGINT}, #{po.picture,jdbcType=CHAR},
+      #{po.createTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+  <delete id="batchDelete" parameterType="java.util.List">
+    delete from t_general_picture
+    where gp_id in (
+    <foreach collection="list" item="gpId" index="index" separator=",">
+      #{gpId,jdbcType=BIGINT}
+    </foreach>)
+  </delete>
+</mapper>

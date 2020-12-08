@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.IsolationMapper">
+    <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.IsolationPO">
+        <id column="isolation_id" jdbcType="BIGINT" property="isolationId"/>
+        <result column="area_id" jdbcType="BIGINT" property="areaId"/>
+        <result column="belongs" jdbcType="BIGINT" property="belongs"/>
+        <result column="tag_id" jdbcType="BIGINT" property="tagId"/>
+        <result column="name" jdbcType="CHAR" property="name"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        isolation_id, area_id, belongs, tag_id, `name`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_isolation
+        where isolation_id = #{isolationId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from t_isolation
+        where isolation_id = #{isolationId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.talentmap.common.pojo.IsolationPO">
+        insert into t_isolation (isolation_id, area_id, belongs,
+                                 tag_id, `name`)
+        values (#{isolationId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, #{belongs,jdbcType=BIGINT},
+                #{tagId,jdbcType=BIGINT}, #{name,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.talentmap.common.pojo.IsolationPO">
+        insert into t_isolation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="isolationId != null">
+                isolation_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="belongs != null">
+                belongs,
+            </if>
+            <if test="tagId != null">
+                tag_id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="isolationId != null">
+                #{isolationId,jdbcType=BIGINT},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=BIGINT},
+            </if>
+            <if test="belongs != null">
+                #{belongs,jdbcType=BIGINT},
+            </if>
+            <if test="tagId != null">
+                #{tagId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.IsolationPO">
+        update t_isolation
+        <set>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=BIGINT},
+            </if>
+            <if test="belongs != null">
+                belongs = #{belongs,jdbcType=BIGINT},
+            </if>
+            <if test="tagId != null">
+                tag_id = #{tagId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=CHAR},
+            </if>
+        </set>
+        where isolation_id = #{isolationId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.IsolationPO">
+        update t_isolation
+        set area_id = #{areaId,jdbcType=BIGINT},
+            belongs = #{belongs,jdbcType=BIGINT},
+            tag_id  = #{tagId,jdbcType=BIGINT},
+            `name`  = #{name,jdbcType=CHAR}
+        where isolation_id = #{isolationId,jdbcType=BIGINT}
+    </update>
+
+    <!--我是分割线我是分割线我是分割线我是分割线我是分割线我是分割线我是分割线我是分割线我是分割线我是分割线-->
+    <select id="selectByUser" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select t_isolation.isolation_id as isolation_id,
+               area_id,
+               belongs,
+               tag_id,
+               `name`
+        from t_user
+                 left join
+             t_isolation
+             on t_user.isolation_id = t_isolation.isolation_id
+        where t_user.user_id = #{userId,jdbcType=BIGINT}
+    </select>
+
+    <!--初始化-->
+    <select id="selectAreaName" parameterType="java.lang.Long" resultType="java.util.HashMap">
+        select isolation_id as isolationId,
+               t_area.name  as `name`
+        from t_isolation
+                 left join
+             t_area
+             on t_isolation.area_id = t_area.area_id
+        where t_isolation.isolation_id = #{isolationId,jdbcType=BIGINT}
+    </select>
+
+    <!--  找儿子-->
+    <select id="selectByParent" parameterType="java.lang.Long" resultType="java.util.HashMap">
+        select isolation_id as isolationId,
+               t_area.name  as `name`
+        from t_isolation
+                 left join
+             t_area
+             on t_isolation.area_id = t_area.area_id
+        where t_isolation.belongs = #{isolationId,jdbcType=BIGINT}
+    </select>
+
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_isolation
+        order by isolation_id
+    </select>
+    <select id="queryIds" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select isolation_id
+        from t_isolation
+        where isolation_id = #{isolationId,jdbcType=BIGINT}
+           or belongs = #{isolationId,jdbcType=BIGINT}
+    </select>
+
+    <insert id="addIsolation" useGeneratedKeys="true"  keyProperty="isolationId" parameterType="com.talentmap.common.pojo.IsolationPO">
+    insert into t_isolation (tag_id, `name`)
+    values (#{tagId,jdbcType=BIGINT}, #{name,jdbcType=CHAR})
+    </insert>
+    
+    <select id="queryByName" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT isolation_id FROM `t_isolation` WHERE name LIKE trim(replace ('%' #{sourceName,jdbcType=CHAR} '%' ,' ',''))
+    </select>
+</mapper>

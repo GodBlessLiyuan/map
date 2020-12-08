@@ -1,0 +1,155 @@
+.famousfont {
+    margin: 0 auto;
+}
+
+.famous {
+    font-family: PingFangSC-Semibold;
+    font-size: 20px;
+    color: #3698E9;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.boldline {
+    width: 60px;
+    height: 2px;
+    background-color: #CCCCCC;
+    margin-top: 10px;
+}
+
+.famousPerImg {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+
+}
+
+.borderImg {
+    border-radius: 60px;
+}
+
+.famName {
+    font-family: PingFangSC-Semibold;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #333333;
+    text-align: center;
+}
+
+.unitPosition {
+    width: 300px;
+    height: 40px;
+    margin: 0 auto;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+}
+
+.socialWork {
+    width: 720px;
+
+    margin: 0 auto;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333333;
+    text-align: left;
+    text-indent: 2em;
+
+}
+
+.carouselImg {
+    width: 750px;
+    height: 360px;
+    margin: 0 auto;
+}
+
+.breadcrumbDiv {
+    width: 100%;
+    height: 66px;
+    padding-top: 15px;
+    background: #F1F3F8;
+}
+
+.breadcrumbfont {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    line-height: 66px;
+    text-align: center;
+}
+
+.topHeader {
+    width:100%;
+    height: 80px;
+    background: #FFFFFF;
+    margin: 0 auto;
+}
+
+/*去除详情页 您好 下拉列表里面的 li 标签圆点*/
+#ulDotNone li {
+    list-style-type: none;
+ }
+
+#ulDotNone li {
+    text-align: left;
+    padding-left: 0px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #666666;
+
+}
+
+/*解决详情页 您好 按钮宽度问题*/
+#userInfoBtn {
+    width: 150px;
+    height: 36px;
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+.copyright {
+    width: 100%;
+    height: 100px;
+    background: #1D2226;
+    opacity: 0.6;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    line-height: 100px;
+    text-align: center;
+}
+
+/*
+.headerfont {
+    float: left;
+    font-family: YouSheBiaoTiHei;
+    font-size: 34px;
+    line-height: 80px;
+    color: #3698E9;
+    padding-left: 0;
+}
+*/
+
+/*修改您好下拉按钮的li标签 样式： 修改密码 和退出登录 */
+
+.borderNone {
+    border: none;
+    /*background: #FFFFFF;*/
+}
+
+.userInfo {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+.modifBtn ,.exitBtn {
+    border:none;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #666666;
+    text-align: left ;
+    /*background-color: #FFFFFF;*/
+}

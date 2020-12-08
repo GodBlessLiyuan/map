@@ -1,0 +1,43 @@
+
+.nameDetails {
+    font-family: PingFangSC-Semibold;
+    font-weight: bolder;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+}
+
+.postionDetails {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+}
+
+.omitPostionDetails {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+#famousDetailsModal {
+    margin-top: 10.9%;
+}
+
+.socialWorkMobile {
+    width: 67.5%;
+    margin: 0 auto;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #3A3A3A;
+    text-align: left;
+    text-indent: 2em;
+}
+
+.carouselDivMobile {
+
+    width: 260px;
+    height: 124px;
+    padding-top: 15px;
+    margin: 0 auto;
+}

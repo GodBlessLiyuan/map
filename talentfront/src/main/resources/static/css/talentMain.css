@@ -1,0 +1,84 @@
+
+/* login.flt css begin*/
+
+.copyright {
+    width: 100%;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 900px) {
+
+/*    body {
+        background:url(../images/loginbg_mobile.png) no-repeat;
+        background-size: cover;
+        }*/
+}
+
+@media screen and (min-width: 900px) and (max-width: 3200px) {
+
+
+    .bigTitle {
+        height: 57px;
+        width:100%;
+        margin-top: 50px;
+        font-family: YouSheBiaoTiHei;
+        /*font-style: italic;*/
+        font-weight: bolder;
+        line-height: 57px;
+        font-size: 36px;
+        color: #FFFFFF;
+        text-align: center;
+        text-shadow: 0 2px 4px #1163B8;
+    }
+    .smTitle {
+        height: 28px;
+        width:100%;
+
+        font-family: PingFangSC-Semibold;
+        font-size: 20px;
+        color: #FFFFFF;
+        line-height: 28px;
+        text-align: center;
+        text-shadow: 0 2px 4px #1163B8;
+        /*margin-bottom: 30px;*/
+    }
+
+    .logcontainer {
+        width:340px;
+        height: 400px;
+        margin: 0 auto;
+        opacity: 0.8;
+        background: #FFFFFF;
+        border: 2px solid #FFFFFF;
+        box-shadow: 0 3px 10px 0 #1676A4;
+        border-radius: 10px;
+        border-radius: 10px;
+
+    }
+
+
+    #logPhone {
+        padding-left: 30px;
+        background:url(/images/ico_phone@1x.png) no-repeat 0 center;
+    }
+    #logPwd {
+        padding-left: 30px;
+        background:url(/images/ico_code@1x.png) no-repeat 0 center;
+    }
+    #checkCode {
+        padding-left: 30px;
+        background:url(/images/ico_vcode@1x.png) no-repeat 0 center;
+    }
+}
+
+/* login.flt css end*/
+.input-control {
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+}
+

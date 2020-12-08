@@ -1,0 +1,79 @@
+#Ӧ������
+spring:
+  application:
+    name: talentfront
+  freemarker:
+    tempalte-loader-path:
+      classpath: templates
+    # �رջ��棬��ʱˢ�£���������������Ҫ�޸�Ϊtrue
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+    settings:
+      classic_compatible: true
+  jackson:
+    serialization:
+      indent-output: true
+      fail-on-empty-beans: false
+    #spring.jackson.default-property-inclusion=non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+08
+  datasource:
+    url: jdbc:mysql://39.97.253.38:3306/talentmap2?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: '!qaZXSw2'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 192.168.10.3
+    port: 6379
+    password: 123456
+    timeout: 1000
+
+server:
+  port: 9091
+  tomcat:
+    uri-encoding: utf-8
+# mybatis ����
+mybatis:
+  mapper-locations: com/talentmap/common/mapper/xml/*.xml
+logging:
+  level:
+    com.talentmap.common.mapper: debug
+
+
+file:
+  rootDi: D:\testFile
+  staticAccessPath: /file/**
+  projectDir: /talentmap
+  pictureDir: /picture/
+  excelDir: /excel/
+  videoDir: /video/
+  publicPath: http://39.97.253.38/
+
+
+config:
+  baidu:
+    mapkey: gCWCsBL8Ufyr7oiyGVG5H57dcoMdyG2G
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 2
+    health-check-url-path: /actuator/health
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url.defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+

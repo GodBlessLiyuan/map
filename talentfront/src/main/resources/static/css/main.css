@@ -1,0 +1,659 @@
+/* main_idnex.flt css begin */
+
+body,html {
+    margin: 0;
+    padding: 0;
+}
+.topHeader {
+    width:100%;
+    height: 80px;
+    background: #FFFFFF;
+    margin: 0 auto;
+}
+
+.mapcontainer {
+    width:72%;
+    margin: 0 auto;
+}
+
+.topMove {
+    margin-top: -450px;
+}
+
+.mapcontainerMobile {
+    width:100%;
+    margin: 0 auto;
+}
+
+
+
+
+/*按钮组字体公共样式*/
+.commBtnFont {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+
+}
+
+.commBtn {
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0 0 6px 0 #EEEEEE;
+    border-radius: 4px;
+    border-radius: 4px;
+    text-align: right;
+
+}
+
+/*视频切换按钮*/
+#switchBtn {
+    background: #FFFFFF;
+    border: 0px solid #EEEEEE;
+    box-shadow: 0 0 6px 0 #EEEEEE;
+    border-radius: 4px;
+    border-radius: 4px;
+    margin-left: 5px;
+
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+#videoBtn {
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0 0 6px 0 #EEEEEE;
+    border-radius: 4px;
+    border-radius: 4px;
+
+    margin-left: 10px;
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+    width:60px;
+    text-align: right;
+    padding-right: 5px;
+    background:url(/images/ico_video.png) no-repeat left ;
+}
+
+.wellkonwn {
+    width: 200px;
+    height:28px;
+    margin: 0 auto;
+    font-family: PingFangSC-Semibold;
+    font-size: 20px;
+    line-height: 28px;
+    color: #3698E9;
+    text-align: center;
+}
+.divline {
+    width: 60px;
+    height: 2px;
+    margin: 0 auto;
+    background-color: #CCCCCC;
+}
+
+.divlineMobile {
+
+    width:100%;
+    font-family: PingFangSC-Regular;
+    font-size: 15px;
+    color: #666666;
+    text-align: center;
+}
+
+.bgline {
+    width: 60px;
+    height: 2px;
+    background-color: #CCCCCC;
+    margin-top: 5px;
+}
+
+.famousList {
+    width: 90%;
+    margin: 20px auto;
+    background-color: lightblue;
+}
+
+
+
+.famousListMobile {
+    width: 100%;
+   /* background-color: lightgray;*/
+}
+
+.each {
+  /* 测试*/
+    width: 20%;
+    height: 346px;
+    margin-left: 4%;
+    margin-bottom: 10px;
+    float: left;
+    background: #FFFFFF;
+    border: 1px solid #F3F3F3;
+    box-shadow: 0 0 10px 0 #D8D8D8;
+    border-radius: 8px;
+    border-radius: 8px;
+}
+
+.eachHoverDiv {
+    width: 100%;
+    background: #FFFFFF;
+    height: 100%;
+    margin-top: 1%;
+    text-align: center;
+    position: relative
+}
+
+.omitTextSmall {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-align: left;
+}
+
+
+
+.imgDiv {
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+}
+
+.imgBorder {
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+}
+
+.famousName{
+    height: 30px;
+    font-family: PingFangSC-Semibold;
+    font-size: 16px;
+    font-weight: bolder;
+    line-height: 30px;
+    color: black;
+    text-align: center;
+}
+
+
+.unitPosition {
+    height: 80px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #3A3A3A;
+    text-align: center;
+}
+
+/*本质是社会兼职*/
+.unitPositionHover {
+    height: 80px;
+    margin-top: 10px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    line-height: 16px;
+    color: #3A3A3A;
+    text-align: center;
+}
+
+/*当div中文字太多的时候显示省略号*/
+.omitTextDiv {
+
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-indent:2em;
+    text-align: left;
+}
+
+.socialWork {
+    margin: 0 auto;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #3A3A3A;
+    text-align:left;
+    text-indent: 2em;
+}
+
+.moreInfo {
+    width: 100%;
+    height:56px;
+    margin-bottom: 0px;
+    background: #3698E9;
+    border: 1px solid #F3F3F3;
+    border-radius: 0 0 8px 8px;
+    border-radius: 0px 0px 8px 8px;
+
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    line-height: 56px;
+    color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+}
+
+.morebtn {
+    width: 800px;
+    height: 22px;
+    margin: 20px auto;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    line-height: 22px;
+    color: #666666;
+    text-align: center;
+    cursor: pointer;
+}
+
+.infoContent {
+
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.infoContentMobile {
+   /* display: block;*/
+    width: 100%;
+    background: #FFFFFF;
+    /*box-shadow: 0 -1px 8px 0 #DDDDDD;*/
+    /*border-radius: 20px 20px 0 0;*/
+    /*border-radius: 20px 20px 0px 0px;*/
+}
+
+.switchDiv {
+
+}
+
+.copyright {
+    width: 100%;
+    height: 60px;
+    background: #1D2226;
+    opacity: 0.6;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+/*.headerfont {
+    float: left;
+    font-family: YouSheBiaoTiHei;
+    font-size: 34px;
+    line-height: 80px;
+    color: #3698E9;
+    padding-left: 0;
+}*/
+
+.divcenter {
+    margin: 0 auto;
+}
+
+.fourBtn {
+  /*  margin-left: 0;*/
+    margin-right: 10px;
+    height: 40px;
+    width:40%;
+    float: right;
+    margin-bottom: -30px;
+    position: relative;
+
+    z-index:10;
+}
+
+.btngroupMobile {
+    margin-right: 10px;
+    height: 40px;
+    width:20%;
+    float: right;
+    margin-bottom: -30px;
+    position: relative;
+
+    z-index:10;
+}
+
+/*解决点击下拉箭头 被下面的按钮组遮挡问题*/
+/*
+.loginDiv {
+    width: 100%;
+    z-index: 20;
+}
+*/
+/*
+
+.userInfo {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+*/
+
+/*.borderNone {
+    border: none;
+    background: #FFFFFF;
+}*/
+
+.modifBtn ,.exitBtn {
+    border:none;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+.modifBtn:hover{
+    border: none;
+    outline: none;
+    color: #3698E9;
+    background-color: #FFFFFF;
+}
+.exitBtn:hover{
+    border: none;
+    outline: none;
+    color: #3698E9;
+    background-color: #FFFFFF;
+}
+
+#videoModal {
+    margin: 0 auto;
+    width:800px;
+    height: 620px;
+}
+
+.videoDiv {
+    width:740px;
+    height: 460px;
+    margin: 0 auto;
+    text-align: center
+}
+
+.videoDiv video {
+    width:94%;
+    margin-top: 20px;
+}
+
+
+/*fullScreen function 全屏功能 begin*/
+.gone {
+    display: none;
+}
+
+
+#fullscreenBtn {
+    text-align: right;
+    width:70px;
+
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+.fullScreenCondition {
+    width:90%;
+    margin: 0 auto;
+}
+
+.worldmapSmall {
+
+    /*height: 520px;*/
+    height: 620px;
+    box-shadow: 0 2px 10px 0 #7FABD0;
+    border-radius: 20px;
+
+}
+
+.worldmapMobile {
+    /*height: 620px;*/
+    height: 100%;
+    box-shadow: 0 2px 10px 0 #ffffff;
+}
+
+
+/*全屏的时候地图：世界地图*/
+.worldmapLarge {
+    margin-top: 50px;
+    height: 800px;
+    width: 100%;
+    z-index: 998;
+
+    box-shadow: 0 2px 10px 0 #7FABD0;
+    border-radius: 20px;
+}
+
+
+.chinamapSmall {
+    height: 620px;
+    box-shadow: 0 2px 10px 0 #7FABD0;
+    border-radius: 20px;
+}
+
+.chinamapLarge {
+    margin-top: 50px;
+    height: 800px;
+    width: 100%;
+    box-shadow: 0 2px 10px 0 #7FABD0;
+    border-radius: 20px;
+    z-index: 998;
+}
+
+
+.fullMap {
+    width:90%;
+    height: auto;
+}
+
+/*fullScreen function 全屏功能 end*/
+
+#searchGeneralInput {
+    width: 164px;
+    height: 36px;
+    display: block;
+    background: #FFFFFF;
+    border: 0px solid #EEEEEE;
+    box-shadow: 0 1px 6px 0 #EEEEEE;
+    border-radius: 4px;
+    border-radius: 4px;
+
+}
+
+#searchGeneralBtn {
+    height: 20px;
+    background-color: #FFFFFF;
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+
+    color: #3698E9;
+    border: none;
+
+}
+
+#arrowFold {
+    width: 22px;
+    height: 36px;
+    margin-right: 0px;
+}
+
+.btnCom {
+    border: 1px solid #EEEEEE;
+    box-shadow: 0 0 6px 0 #EEEEEE;
+    border-radius: 4px;
+    border-radius: 4px;
+
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+#foldBtn {
+    width: 200px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+#userInfoBtn {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+
+/* main_idnex.flt css end */
+
+
+#foldUpDiv {
+    height: 40px;
+    line-height: 40px;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #666666;
+    text-align: center;
+    cursor: pointer;
+}
+.input-control {
+    /*border: 1px solid rgba(0,0,0,0.15);*/
+    border-radius: 4px;
+    background: #ffffff;
+    border: 1px solid #E5E9EE;
+}
+
+.button-control {
+    height: 32px;
+    width: 85px;
+}
+.name-input{
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    width: 90px;
+    height: 30px;
+    padding-left: 8px;
+}
+.address-input{
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    width: 120px;
+    height: 30px;
+    padding-left: 8px;
+}
+.select-input{
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    width: 120px;
+    height: 30px;
+    padding-left: 8px;
+}
+.button1-control {
+    height: 30px;
+    width: 60px;
+}
+.button2-control {
+    outline:none;
+    background: #FFFFFF;
+    text-align: center;
+    border:none;
+    height: 40px;
+    width: 130px;
+    color: #4A5A6A;
+    font-size: 20px;
+}
+.button3-control {
+    height: 30px;
+}
+
+.button4-control {
+    background: #3698E9;
+    color: #FFFFFF;
+    border: 1px solid #3698E9;
+    border-radius: 4px;
+    height: 30px;
+    width: 60px;
+
+}
+.label-control {
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    color: #4A5A6A;
+    text-align: right;
+    line-height: 35px;
+    font-weight: bold;
+}
+.label1-control {
+    line-height: 15px;
+}
+.editButton-control {
+    background: #1890FF;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    height: 30px;
+    width: 80px;
+    color: #FFFFFF;
+}
+.editButton1-control {
+    background: #FFFFFF;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    height: 30px;
+    width: 90px;
+    color: #3698E9;
+}
+.editButton3-control {
+    background: #1890FF;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    height: 30px;
+    width: 120px;
+    color: #FFFFFF;
+}
+.main-control {
+    margin-right: auto; /* 1 */
+    margin-left:  auto; /* 1 */
+    height: 900px;
+
+}
+.textarea-control {
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    width : 200px;
+    height : 100px;
+    max-width : 300px;
+    max-height : 100px;
+    resize: none;
+}
+.label2-control {
+    /*width: 100px;*/
+    font-family: PingFangSC-Medium;
+    font-size: 15px;
+    color: #4A5A6A;
+    line-height: 35px;
+    font-weight: bold;
+}
+.input-width {
+    width: 300px;
+}
+.modify-button:hover {
+    background: #F3F1FA;
+    color: #3698E9;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;}

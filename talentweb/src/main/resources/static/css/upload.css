@@ -1,0 +1,86 @@
+.imageDiv {
+    /*float: right;*/
+    display:inline-block;
+    width:90px;
+    height:90px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    border:0;
+    background:#f8f8f8;
+    position:relative;
+    overflow:hidden;
+}
+
+/*修改前备份*/
+
+/*
+.cover {
+    position:absolute;
+    z-index:1;
+    top:0;
+    left:0;
+    width:90px;
+    height:90px;
+    background-color:rgba(0,0,0,.3);
+    display:none;
+    line-height:125px;
+    text-align:center;
+    cursor:pointer;
+}
+
+*/
+
+.cover {
+    position:absolute;
+    z-index:1;
+    top:-5px;
+    right:0;
+    width:90px;
+    height:90px;
+
+    background-color:rgba(0,0,0,.3);
+    display:none;
+
+/*line-height:125px;*/
+    text-align:right;
+    cursor:pointer;
+}
+
+
+.cover .delbtn {
+    color:red;
+    font-size:20px;
+}
+.imageDiv:hover .cover {
+    display:block;
+}
+.addImages {
+    display:inline-block;
+    width:90px;
+    height:90px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    border:0;
+    background:#f8f8f8;
+    position:relative;
+    overflow:hidden;
+    margin:10px;
+}
+.text-detail {
+    margin-top:40px;
+    text-align:center;
+}
+.text-detail span {
+    font-size:40px;
+}
+.file {
+    position:absolute;
+    top:0;
+    left:0;
+    width:90px;
+    height:90px;
+    opacity:0;
+}
+

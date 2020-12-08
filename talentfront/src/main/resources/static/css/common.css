@@ -1,0 +1,48 @@
+
+/*按钮组字体公共样：*/
+.btnCommFont {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+    border-radius: 4px;
+    border-radius: 4px;
+}
+
+.loginDiv {
+    width: 100%;
+    z-index: 20;
+}
+
+.headerfont {
+    float: left;
+    font-family: YouSheBiaoTiHei;
+    font-size: 34px;
+    line-height: 80px;
+    color: #3698E9;
+    padding-left: 0;
+}
+
+.borderNone {
+    border: none;
+    /*background: #FFFFFF;*/
+}
+
+
+.userInfo {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #3698E9;
+}
+
+.headerfont {
+    float: left;
+    font-family: YouSheBiaoTiHei;
+    font-size: 34px;
+    line-height: 80px;
+    color: #3698E9;
+    padding-left: 0;
+}
+
+.loginDiv a:hover{
+    cursor:pointer
+}

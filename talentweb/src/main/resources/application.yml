@@ -1,0 +1,87 @@
+spring:
+  application:
+    name: talentweb
+  jackson:
+    serialization:
+      indent-output: true
+      fail-on-empty-beans: true
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+08
+  datasource:
+    url: jdbc:mysql://39.97.253.38:3306/talentmap2?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: '!qaZXSw2'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  freemarker:
+    template-loader-path: classpath:/templates
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+    settings:
+      number_format: 0
+      classic_compatible: true
+  servlet:
+    multipart:
+      enabled: true #是否启用http上传处理
+      max-request-size: 100MB #最大请求文件的大小
+      max-file-size: 100MB #设置单个文件最大长度
+  redis:
+    database: 0
+    host: 192.168.10.3
+    port: 6379
+    password: 123456
+    timeout: 1000
+
+server:
+  port: 8020
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /mgr
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,application/xhtml+xml,text/html,text/xml,text/plain
+    min-response-size: 102400
+
+mybatis:
+  mapper-locations: com/talentmap/common/mapper/xml/*.xml
+logging:
+  level:
+    com.talentmap.common.mapper: debug
+file:
+  rootDir: D:\testFile
+  staticAccessPath: /file/**
+  projectDir: /talentmap
+  pictureDir: /picture/
+  excelDir: /excel/
+  videoDir: /video/
+  publicPath: http://39.97.253.38
+  generalTemplate: /talentfile/template/talent_template.xlsx
+  focusTemplate: /talentfile/template/talent_template.xlsx
+config:
+  baidu:
+    mapkey: gCWCsBL8Ufyr7oiyGVG5H57dcoMdyG2G
+    ak: gCWCsBL8Ufyr7oiyGVG5H57dcoMdyG2G
+jobs:
+  schedule: "0 0/10 * * * ?"
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 2
+    health-check-url-path: /actuator/health
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url.defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+

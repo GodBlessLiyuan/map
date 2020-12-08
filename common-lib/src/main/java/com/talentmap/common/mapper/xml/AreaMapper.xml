@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.AreaPO">
+    <id column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="belongs" jdbcType="BIGINT" property="belongs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    area_id, `name`, belongs
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_area
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_area
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.AreaPO">
+    insert into t_area (area_id, `name`, belongs
+      )
+    values (#{areaId,jdbcType=BIGINT}, #{name,jdbcType=CHAR}, #{belongs,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.AreaPO">
+    insert into t_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="belongs != null">
+        belongs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="belongs != null">
+        #{belongs,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.AreaPO">
+    update t_area
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=CHAR},
+      </if>
+      <if test="belongs != null">
+        belongs = #{belongs,jdbcType=BIGINT},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.AreaPO">
+    update t_area
+    set `name` = #{name,jdbcType=CHAR},
+      belongs = #{belongs,jdbcType=BIGINT}
+    where area_id = #{areaId,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_area order by area_id
+  </select>
+</mapper>

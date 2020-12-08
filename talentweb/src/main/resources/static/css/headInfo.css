@@ -1,0 +1,16 @@
+
+#topHeadInfo{
+  /*  background-color: #3698E9;*/
+
+}
+
+#userInfoBtn {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.header a:hover{
+    cursor:pointer
+}

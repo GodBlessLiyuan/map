@@ -1,0 +1,29 @@
+
+/*视频配置页面css样式文件*/
+
+#btnReplace {
+    text-align: center;
+}
+
+#btnReplace {
+
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#video_upload {
+
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#video_edit {
+    margin-bottom: -20px;
+    background: #1890FF;
+    border-radius: 4px;
+    border-radius: 4px;
+}

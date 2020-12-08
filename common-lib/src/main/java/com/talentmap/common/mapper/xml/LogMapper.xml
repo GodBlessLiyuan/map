@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.LogMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.LogPO">
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="description" jdbcType="CHAR" property="description" />
+    <result column="url" jdbcType="CHAR" property="url" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="isolation_id" jdbcType="BIGINT" property="isolationId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    log_id, description, url, create_time, user_id, isolation_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.LogPO">
+    insert into t_log (log_id, description, url, 
+      create_time, user_id, isolation_id
+      )
+    values (#{logId,jdbcType=BIGINT}, #{description,jdbcType=CHAR}, #{url,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, #{isolationId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.LogPO">
+    insert into t_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="isolationId != null">
+        isolation_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=CHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="isolationId != null">
+        #{isolationId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.LogPO">
+    update t_log
+    <set>
+      <if test="description != null">
+        description = #{description,jdbcType=CHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="isolationId != null">
+        isolation_id = #{isolationId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.LogPO">
+    update t_log
+    set description = #{description,jdbcType=CHAR},
+      url = #{url,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      isolation_id = #{isolationId,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryAll" resultType="com.talentmap.common.bo.LogBO">
+    select l.create_time as createTime,  u.username as username,
+    i.name as isolation, l.description as description, l.url as url
+    from t_log l
+    left join t_user u on l.user_id = u.user_id
+    left join t_isolation i on l.isolation_id = i.isolation_id
+    where 1=1
+      <if test="(startTime != null and startTime != '') and (endTime != null and endTime != '')">
+        and l.create_time &gt;= #{startTime} and l.create_time &lt;= #{endTime}
+      </if>
+      <if test="(startTime != null and startTime != '') and (endTime == null || endTime == '')">
+        AND l.create_time &gt;= #{startTime}
+      </if>
+      <if test="(startTime != null || startTime != '') and (endTime != null and endTime != '')">
+        AND l.create_time &lt;= #{endTime}
+      </if>
+      <if test="operator != null and operator != ''">
+        AND u.username like '%' #{operator} '%'
+      </if>
+      /*0是市级*/
+      /*1区级，乡镇级*/
+      <if test="isolationType == 1">
+        AND (i.isolation_id = #{isolationId} or i.belongs= #{isolationId})
+      </if>
+      /*2学校*/
+      <if test="isolationType == 2">
+        AND i.tag_id = #{tagId}
+      </if>
+  </select>
+</mapper>

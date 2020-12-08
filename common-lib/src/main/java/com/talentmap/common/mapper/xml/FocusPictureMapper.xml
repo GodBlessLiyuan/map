@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.FocusPictureMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.FocusPicturePO">
+    <id column="fp_id" jdbcType="BIGINT" property="fpId" />
+    <result column="tf_id" jdbcType="BIGINT" property="tfId" />
+    <result column="picture" jdbcType="CHAR" property="picture" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fp_id, tf_id, picture, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_focus_picture
+    where fp_id = #{fpId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_focus_picture
+    where fp_id = #{fpId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.FocusPicturePO">
+    insert into t_focus_picture (fp_id, tf_id, picture, 
+      create_time)
+    values (#{fpId,jdbcType=BIGINT}, #{tfId,jdbcType=BIGINT}, #{picture,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.FocusPicturePO">
+    insert into t_focus_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fpId != null">
+        fp_id,
+      </if>
+      <if test="tfId != null">
+        tf_id,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fpId != null">
+        #{fpId,jdbcType=BIGINT},
+      </if>
+      <if test="tfId != null">
+        #{tfId,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.FocusPicturePO">
+    update t_focus_picture
+    <set>
+      <if test="tfId != null">
+        tf_id = #{tfId,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fp_id = #{fpId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.FocusPicturePO">
+    update t_focus_picture
+    set tf_id = #{tfId,jdbcType=BIGINT},
+      picture = #{picture,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where fp_id = #{fpId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into t_focus_picture (fp_id, tf_id, picture,
+    create_time) values
+    <foreach collection="list" item="po" index="index" separator=",">
+      (#{po.fpId,jdbcType=BIGINT}, #{po.tfId,jdbcType=BIGINT}, #{po.picture,jdbcType=CHAR},
+      #{po.createTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+  <delete id="batchDelete" parameterType="java.util.List">
+    delete from t_focus_picture
+    where fp_id in (
+    <foreach collection="list" item="fpId" index="index" separator=",">
+      #{fpId,jdbcType=BIGINT}
+    </foreach>)
+  </delete>
+</mapper>

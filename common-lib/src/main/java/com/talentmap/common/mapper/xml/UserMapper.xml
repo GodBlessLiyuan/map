@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.UserPO">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="is_manager" jdbcType="BIT" property="isManager" />
+    <result column="extra" jdbcType="CHAR" property="extra" />
+    <result column="dr" jdbcType="TINYINT" property="dr" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="isolation_id" jdbcType="BIGINT" property="isolationId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, username, phone, `password`, is_manager, extra, dr, create_time, update_time, 
+    role_id, isolation_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.UserPO">
+    insert into t_user (user_id, username, phone, 
+      `password`, is_manager, extra, dr, 
+      create_time, update_time, role_id, 
+      isolation_id)
+    values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, 
+      #{password,jdbcType=CHAR}, #{isManager,jdbcType=BIT}, #{extra,jdbcType=CHAR}, #{dr,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{roleId,jdbcType=BIGINT}, 
+      #{isolationId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.UserPO">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="isManager != null">
+        is_manager,
+      </if>
+      <if test="extra != null">
+        extra,
+      </if>
+      <if test="dr != null">
+        dr,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="isolationId != null">
+        isolation_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="isManager != null">
+        #{isManager,jdbcType=BIT},
+      </if>
+      <if test="extra != null">
+        #{extra,jdbcType=CHAR},
+      </if>
+      <if test="dr != null">
+        #{dr,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="isolationId != null">
+        #{isolationId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.UserPO">
+    update t_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=CHAR},
+      </if>
+      <if test="isManager != null">
+        is_manager = #{isManager,jdbcType=BIT},
+      </if>
+      <if test="extra != null">
+        extra = #{extra,jdbcType=CHAR},
+      </if>
+      <if test="dr != null">
+        dr = #{dr,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="isolationId != null">
+        isolation_id = #{isolationId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.UserPO">
+    update t_user
+    set username = #{username,jdbcType=CHAR},
+      phone = #{phone,jdbcType=CHAR},
+      `password` = #{password,jdbcType=CHAR},
+      is_manager = #{isManager,jdbcType=BIT},
+      extra = #{extra,jdbcType=CHAR},
+      dr = #{dr,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      role_id = #{roleId,jdbcType=BIGINT},
+      isolation_id = #{isolationId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where phone = #{phone} and dr=1
+  </select>
+  <select id="queryAll" resultType="com.talentmap.common.bo.UserBO">
+    select t_user.user_id as userId, t_user.username as username, t_user.phone, t_user.extra,
+    t_role.role_name as roleName, t_isolation.name as areaName
+    from t_user
+    left join
+    t_role
+    on t_user.role_id = t_role.role_id
+    left join t_isolation
+    on t_user.isolation_id = t_isolation.isolation_id
+    where t_user.dr = 1
+    <if test="username != null and username != ''">
+      and t_user.username like '%' #{username} '%'
+    </if>
+    <if test="roleId != null and roleId != ''">
+      and t_user.role_id =  #{roleId}
+    </if>
+
+    /*0是市级*/
+    /*1区级，乡镇级*/
+    <if test="isolationType == 1">
+      and (t_isolation.isolation_id = #{isolationId} or t_isolation.belongs= #{isolationId})
+    </if>
+    /*2学校*/
+    <if test="isolationType == 2">
+      and t_isolation.tag_id = #{tagId}
+    </if>
+    /*除了超级管理员谁都不能看到超级管理员和游客*/
+    <if test="myRoleId !=1">
+      and t_user.role_id !=1
+      and t_user.role_id !=2
+    </if>
+  </select>
+  <select id="queryPhoneCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(user_id)
+    from t_user
+    where phone = #{phone} AND dr=1
+  </select>
+  <select id="queryUserCountByRoleId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select count(user_id)
+    from t_user
+    where role_id = #{roleId} AND dr=1
+  </select>
+</mapper>

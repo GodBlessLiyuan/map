@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.TalentFocusMapper">
+    <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.TalentFocusPO">
+        <id column="tf_id" jdbcType="BIGINT" property="tfId"/>
+        <result column="tg_id" jdbcType="BIGINT" property="tgId"/>
+        <result column="isolation_id" jdbcType="BIGINT" property="isolationId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        tf_id, tg_id, isolation_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_talent_focus
+        where tf_id = #{tfId,jdbcType=BIGINT} limit 1
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from t_talent_focus
+        where tf_id = #{tfId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.talentmap.common.pojo.TalentFocusPO">
+        insert into t_talent_focus (tf_id, tg_id, isolation_id)
+        values (#{tfId,jdbcType=BIGINT}, #{tgId,jdbcType=BIGINT}, #{isolationId,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.talentmap.common.pojo.TalentFocusPO">
+        insert into t_talent_focus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tfId != null">
+                tf_id,
+            </if>
+            <if test="tgId != null">
+                tg_id,
+            </if>
+            <if test="isolationId != null">
+                isolation_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tfId != null">
+                #{tfId,jdbcType=BIGINT},
+            </if>
+            <if test="tgId != null">
+                #{tgId,jdbcType=BIGINT},
+            </if>
+            <if test="isolationId != null">
+                #{isolationId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.TalentFocusPO">
+        update t_talent_focus
+        <set>
+            <if test="tgId != null">
+                tg_id = #{tgId,jdbcType=BIGINT},
+            </if>
+            <if test="isolationId != null">
+                isolation_id = #{isolationId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where tf_id = #{tfId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.TalentFocusPO">
+        update t_talent_focus
+        set tg_id        = #{tgId,jdbcType=BIGINT},
+            isolation_id = #{isolationId,jdbcType=BIGINT}
+        where tf_id = #{tfId,jdbcType=BIGINT}
+    </update>
+
+    <select id="queryByTgIdAndIsoId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_talent_focus
+        where tg_id = #{tgId,jdbcType=BIGINT} and isolation_id = #{isolationId,jdbcType=BIGINT}
+        order by tf_id desc limit 1
+    </select>
+
+    <select id="queryExistTgIds" resultType="java.lang.Long">
+        select tg_id
+        from t_talent_focus
+        where isolation_id = #{isolationId,jdbcType=BIGINT} and tg_id in (
+        <foreach collection="tgIds" item="tgId" index="index" separator=",">
+            #{tgId,jdbcType=BIGINT}
+        </foreach>)
+    </select>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into t_talent_focus (tf_id, tg_id, isolation_id)
+        values
+        <foreach collection="list" item="po" index="index" separator=",">
+            (#{po.tfId,jdbcType=BIGINT}, #{po.tgId,jdbcType=BIGINT}, #{po.isolationId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+    <delete id="deleteByTgId" parameterType="java.lang.Long">
+        delete
+        from t_talent_focus
+        where tg_id = #{tgId,jdbcType=BIGINT}
+    </delete>
+
+    <select id="findFocus" parameterType="java.util.Map" resultType="java.util.HashMap">
+        /*重要乡贤*/
+        select
+        tf.tf_id as id, tg.name as `name`, sex, phone, n.name as nature, tg.hometown as town,
+        tg.workunit as unit, tg.location as location, tg.position as `position`, i.name as dataSource,
+        tg.social_work as social, tg.avatar as avatar, tg.field as field
+        from t_talent_general as tg
+        left join t_nature n on tg.nature_id = n.nature_id
+        left join t_education e on tg.educ_id = e.educ_id
+        left join t_talent_focus tf on tg.tg_id = tf.tg_id
+        left join t_isolation i on tg.isolation_id = i.isolation_id
+        left join t_tag tag on i.tag_id = tag.tag_id
+        left join t_talent_famous tfs on tg.tg_id = tfs.tg_id
+        where dr = 1
+        /*必须是重点乡贤*/
+        and tf.tf_id is not null
+        /*排除已经有的知名乡贤*/
+        and tg.tg_id not in
+        (select tfs.tg_id from t_talent_famous tfs
+        left join t_isolation i on tfs.isolation_id = i.isolation_id
+        where tfs.isolation_id = #{isolationId})
+        and tf.isolation_id = #{isolationId}
+        <if test="name != null and name != ''">
+            and trim(replace(tg.`name`,' ','')) like trim(replace ('%' #{name,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="hometown != null and hometown != ''">
+            and trim(replace(tg.hometown,' ','')) like trim(replace ('%' #{hometown,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="location != null and location != ''">
+            and trim(replace(tg.location,' ','')) like trim(replace ('%' #{location,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="unit != null and unit != ''">
+            and trim(replace(tg.`workunit`,' ','')) like trim(replace ('%' #{unit,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="field != null and field != ''">
+            and trim(replace(tg.field,' ','')) like trim(replace ('%' #{field,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="type != null and type != 0">
+            and tg.nature_id = #{type,jdbcType=INTEGER}
+        </if>
+        /*有头像*/
+        <if test="ava==1">
+            and tg.avatar is not null
+        </if>
+        /*没有头像*/
+        <if test="ava==2">
+            and tg.avatar is null
+        </if>
+        order by tf.tf_id asc
+    </select>
+
+    <resultMap id="talentGenFocusBO" type="com.talentmap.common.bo.TalentGenFocusBO">
+        <id column="tg_id" jdbcType="BIGINT" property="tgId"/>
+        <result column="name" jdbcType="CHAR" property="name"/>
+        <result column="avatar" jdbcType="CHAR" property="avatar"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="birth" jdbcType="DATE" property="birth"/>
+        <result column="hometown" jdbcType="CHAR" property="hometown"/>
+        <result column="location" jdbcType="CHAR" property="location"/>
+        <result column="educ_id" jdbcType="INTEGER" property="educId"/>
+        <result column="workunit" jdbcType="CHAR" property="workunit"/>
+        <result column="position" jdbcType="CHAR" property="position"/>
+        <result column="social_work" jdbcType="CHAR" property="socialWork"/>
+        <result column="field" jdbcType="CHAR" property="field"/>
+        <result column="nature_id" jdbcType="INTEGER" property="natureId"/>
+        <result column="phone" jdbcType="CHAR" property="phone"/>
+        <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+        <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+        <result column="contact" jdbcType="CHAR" property="contact"/>
+        <result column="high_school" jdbcType="CHAR" property="highSchool"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="china" jdbcType="TINYINT" property="china"/>
+        <result column="isolation_id" jdbcType="BIGINT" property="isolationId"/>
+        <result column="dr" jdbcType="TINYINT" property="dr"/>
+        <result column="source" jdbcType="BIGINT" property="source"/>
+        <result column="tf_id" jdbcType="BIGINT" property="tfId"/>
+    </resultMap>
+    <select id="queryByIsoId" parameterType="java.lang.Long" resultMap="talentGenFocusBO">
+        SELECT tg.tg_id, `name`, avatar, sex, birth, hometown, `location`, educ_id, workunit, `position`,
+        social_work, field, nature_id, phone, longitude, latitude, contact, high_school,
+        create_time, update_time, user_id, china, tg.isolation_id, dr, `source`,tf.tf_id
+    from t_talent_general tg INNER JOIN t_talent_focus tf ON tg.tg_id=tf.tg_id
+        WHERE tf.isolation_id=#{isolationId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="batchDel" parameterType="java.util.List">
+        DELETE FROM t_talent_focus tf WHERE  tf.tf_id in
+        <foreach collection="list" item="po" separator="," open="(" close=")">
+            #{po.tfId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
+</mapper>

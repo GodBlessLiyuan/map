@@ -1,0 +1,291 @@
+
+/* login.flt css begin*/
+
+.copyright {
+    width:600px;
+    margin:0 auto;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 900px) {
+
+    /*body {*/
+        /*background:url(../images/loginbg_mobile.png) no-repeat;*/
+        /*background-size: cover;*/
+    /*}*/
+}
+
+@media screen and (min-width: 900px) and (max-width: 3200px) {
+
+
+    .bigTitle {
+        height: 57px;
+        width:100%;
+      /*  margin-top: 50px;*/
+        font-family: YouSheBiaoTiHei;
+        font-weight: bolder;
+        font-size: 36px;
+        color: #FFFFFF;
+        text-align: center;
+        text-shadow: 0 2px 4px #1163B8;
+    }
+    .smTitle {
+        height: 30px;
+        width:100%;
+        font-family: PingFangSC-Semibold;
+        font-size: 20px;
+        color: #FFFFFF;
+        text-align: center;
+        text-shadow: 0 2px 4px #1163B8;
+
+    }
+
+    .logcontainer {
+        width:340px;
+       /* height: 400px;*/
+        margin: 0 auto;
+        opacity: 0.8;
+        background: #FFFFFF;
+        border: 2px solid #FFFFFF;
+        box-shadow: 0 3px 10px 0 #1676A4;
+        border-radius: 10px;
+        border-radius: 10px;
+
+    }
+
+
+    #logPhone {
+        padding-left: 30px;
+        background:url(/images/ico_phone@1x.png) no-repeat 0 center;
+    }
+    #logPwd {
+        padding-left: 30px;
+        background:url(/images/ico_code@1x.png) no-repeat 0 center;
+    }
+    #checkCode {
+        padding-left: 30px;
+        background:url(/images/ico_vcode@1x.png) no-repeat 0 center;
+    }
+}
+
+/* login.flt css end*/
+
+/*修改输入框和按钮*/
+.name-input {
+    width: 90px;
+    height: 30px;
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.date-input {
+    width: 160px;
+    height: 30px;
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.other-input {
+    width: 120px;
+    height: 30px;
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    padding-left: 8px;
+}
+
+.select-input{
+    width: 120px;
+    height: 30px;
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.img-input {
+    width: 100px;
+    height: 30px;
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.button-control {
+    height: 32px;
+    width: 85px;
+    font-size: 14px;
+    line-height: 1px;
+}
+
+.button1-control {
+    height: 30px;
+    font-size: 14px;
+    line-height: 0px;
+}
+.button2-control {
+    outline:none;
+    background: #FFFFFF;
+    text-align: center;
+    border:none;
+    height: 40px;
+    width: 130px;
+    color: #4A5A6A;
+    font-size: 20px;
+}
+.button3-control {
+    outline:none;
+    background: #FFFFFF;
+    text-align: center;
+    border:1px solid #EEEEEE;
+    height: 40px;
+    width: 140px;
+    color: #4A5A6A;
+    font-size: 15px;
+}
+.button4-control {
+    background: #3698E9;
+    color: #FFFFFF;
+    border: 1px solid #3698E9;
+    border-radius: 4px;
+    height: 30px;
+    width: 60px;
+
+}
+.label-control {
+    font-family: PingFangSC-Medium;
+    line-height: 35px;
+    font-weight: bold;
+}
+.label1-control {
+    line-height: 15px;
+}
+.editButton-control {
+    background: #1890FF;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    height: 30px;
+    width: 80px;
+    color: #FFFFFF;
+}
+.editButton1-control {
+    background: #FFFFFF;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    height: 30px;
+    width: 90px;
+    color: #3698E9;
+}
+.editButton3-control {
+    background: #1890FF;
+    border: 1px solid #1890FF;
+    border-radius: 4px;
+    height: 30px;
+    width: 120px;
+    color: #FFFFFF;
+}
+.main-control {
+    margin-right: auto; /* 1 */
+    margin-left:  auto; /* 1 */
+    height: 900px;
+
+}
+.textarea-control {
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    width : 200px;
+    height : 100px;
+    max-width : 300px;
+    max-height : 100px;
+    resize: none;
+}
+.label2-control {
+    /*width: 100px;*/
+    font-family: PingFangSC-Medium;
+    font-size: 15px;
+    color: #4A5A6A;
+    line-height: 35px;
+    font-weight: bold;
+}
+
+.input-control{
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+    height: 30px;
+}
+.select-control {
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+    height: 30px;
+    width: 80px;
+}
+
+.input2-control {
+    width: 190px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+    font-size: 14px;
+    color: #5F5F5F;
+}
+.input1-control {
+    width: 300px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+    font-size: 14px;
+    color: #5F5F5F;
+    line-height: 22px;
+}
+
+.title-edite {
+    width: 100px;
+    height: 40px;
+    line-height: 32px;
+    font-size: 14px;
+    text-align: right;
+}
+.role-input{
+    width: 170px;
+    height: 30px;
+    background: #F4F8FD;
+    border: 1px solid #E5E9EE;
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.role-input1{
+    width: 170px;
+    height: 30px;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.new-input{
+    width: 200px;
+    height: 30px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+}
+.new-select{
+    width: 150px;
+    height: 30px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding-left: 8px;
+}

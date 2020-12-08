@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.TalentGeneralMapper">
+    <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.TalentGeneralPO">
+        <id column="tg_id" jdbcType="BIGINT" property="tgId"/>
+        <result column="name" jdbcType="CHAR" property="name"/>
+        <result column="avatar" jdbcType="CHAR" property="avatar"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="birth" jdbcType="DATE" property="birth"/>
+        <result column="hometown" jdbcType="CHAR" property="hometown"/>
+        <result column="location" jdbcType="CHAR" property="location"/>
+        <result column="educ_id" jdbcType="INTEGER" property="educId"/>
+        <result column="workunit" jdbcType="CHAR" property="workunit"/>
+        <result column="position" jdbcType="CHAR" property="position"/>
+        <result column="social_work" jdbcType="CHAR" property="socialWork"/>
+        <result column="field" jdbcType="CHAR" property="field"/>
+        <result column="nature_id" jdbcType="INTEGER" property="natureId"/>
+        <result column="phone" jdbcType="CHAR" property="phone"/>
+        <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+        <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+        <result column="contact" jdbcType="CHAR" property="contact"/>
+        <result column="high_school" jdbcType="CHAR" property="highSchool"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="china" jdbcType="TINYINT" property="china"/>
+        <result column="isolation_id" jdbcType="BIGINT" property="isolationId"/>
+        <result column="dr" jdbcType="TINYINT" property="dr"/>
+        <result column="source" jdbcType="BIGINT" property="source"/>
+    </resultMap>
+    <resultMap id="ResultMapGeneral" type="com.talentmap.common.bo.TalentGeneralBO">
+        <id column="tg_tg_id" jdbcType="BIGINT" property="tgId"/>
+        <result column="name" jdbcType="CHAR" property="name"/>
+        <result column="avatar" jdbcType="CHAR" property="avatar"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="birth" jdbcType="DATE" property="birth"/>
+        <result column="hometown" jdbcType="CHAR" property="hometown"/>
+        <result column="location" jdbcType="CHAR" property="location"/>
+        <result column="educ_id" jdbcType="TINYINT" property="educId"/>
+        <result column="workunit" jdbcType="CHAR" property="workunit"/>
+        <result column="position" jdbcType="CHAR" property="position"/>
+        <result column="social_work" jdbcType="CHAR" property="socialWork"/>
+        <result column="field" jdbcType="CHAR" property="field"/>
+        <result column="nature_id" jdbcType="INTEGER" property="natureId"/>
+        <result column="phone" jdbcType="CHAR" property="phone"/>
+        <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+        <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+        <result column="contact" jdbcType="CHAR" property="contact"/>
+        <result column="high_school" jdbcType="CHAR" property="highSchool"/>
+        <result column="tg_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="china" jdbcType="TINYINT" property="china"/>
+        <result column="isolation_id" jdbcType="BIGINT" property="isolationId"/>
+        <result column="dr" jdbcType="TINYINT" property="dr"/>
+        <result column="nature_name" jdbcType="CHAR" property="nature"/>
+        <collection property="pics" ofType="com.talentmap.common.pojo.GeneralPicturePO">
+            <id column="gp_id" jdbcType="BIGINT" property="gpId"/>
+            <result column="gp_tg_id" jdbcType="BIGINT" property="tgId"/>
+            <result column="picture" jdbcType="CHAR" property="picture"/>
+            <result column="gp_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        tg_id, `name`, avatar, sex, birth, hometown, `location`, educ_id, workunit, `position`,
+    social_work, field, nature_id, phone, longitude, latitude, contact, high_school, 
+    create_time, update_time, user_id, china, isolation_id, dr, `source`
+    </sql>
+    <sql id="Talent_General_Column_List">
+        t_talent_general.tg_id as tg_tg_id, `name`, avatar, sex, birth, hometown, `location`, educ_id, workunit,
+    `position`, social_work, field, nature_id, phone, longitude, latitude, contact, high_school, t_talent_general.create_time as tg_create_time,
+    update_time, user_id, china, isolation_id, dr,
+    gp_id, t_general_picture.tg_id as gp_tg_id, picture, t_general_picture.create_time as gp_create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_talent_general
+        where tg_id = #{tgId,jdbcType=BIGINT}
+    </select>
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        update t_talent_general
+        set dr = 2
+        where tg_id = #{tgId,jdbcType=BIGINT}
+    </update>
+    <insert id="insert" parameterType="com.talentmap.common.pojo.TalentGeneralPO" useGeneratedKeys="true"
+            keyProperty="tgId">
+        insert into t_talent_general (tg_id, `name`, avatar,
+                                      sex, birth, hometown, `location`,
+                                      educ_id, workunit, `position`,
+                                      social_work, field, nature_id,
+                                      phone, longitude, latitude,
+                                      contact, high_school, create_time,
+                                      update_time, user_id, china,
+                                      isolation_id, dr, `source`)
+        values (#{tgId,jdbcType=BIGINT}, #{name,jdbcType=CHAR}, #{avatar,jdbcType=CHAR},
+                #{sex,jdbcType=TINYINT}, #{birth,jdbcType=DATE}, #{hometown,jdbcType=CHAR}, #{location,jdbcType=CHAR},
+                #{educId,jdbcType=INTEGER}, #{workunit,jdbcType=CHAR}, #{position,jdbcType=CHAR},
+                #{socialWork,jdbcType=CHAR}, #{field,jdbcType=CHAR}, #{natureId,jdbcType=INTEGER},
+                #{phone,jdbcType=CHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL},
+                #{contact,jdbcType=CHAR}, #{highSchool,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, #{china,jdbcType=TINYINT},
+                #{isolationId,jdbcType=BIGINT}, #{dr,jdbcType=TINYINT}, #{source,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.talentmap.common.pojo.TalentGeneralPO" useGeneratedKeys="true"
+            keyProperty="tgId">
+        insert into t_talent_general
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tgId != null">
+                tg_id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="hometown != null">
+                hometown,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="educId != null">
+                educ_id,
+            </if>
+            <if test="workunit != null">
+                workunit,
+            </if>
+            <if test="position != null">
+                `position`,
+            </if>
+            <if test="socialWork != null">
+                social_work,
+            </if>
+            <if test="field != null">
+                field,
+            </if>
+            <if test="natureId != null">
+                nature_id,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="contact != null">
+                contact,
+            </if>
+            <if test="highSchool != null">
+                high_school,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="china != null">
+                china,
+            </if>
+            <if test="isolationId != null">
+                isolation_id,
+            </if>
+            <if test="dr != null">
+                dr,
+            </if>
+            <if test="source != null">
+                `source`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tgId != null">
+                #{tgId,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=CHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=CHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=DATE},
+            </if>
+            <if test="hometown != null">
+                #{hometown,jdbcType=CHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=CHAR},
+            </if>
+            <if test="educId != null">
+                #{educId,jdbcType=INTEGER},
+            </if>
+            <if test="workunit != null">
+                #{workunit,jdbcType=CHAR},
+            </if>
+            <if test="position != null">
+                #{position,jdbcType=CHAR},
+            </if>
+            <if test="socialWork != null">
+                #{socialWork,jdbcType=CHAR},
+            </if>
+            <if test="field != null">
+                #{field,jdbcType=CHAR},
+            </if>
+            <if test="natureId != null">
+                #{natureId,jdbcType=INTEGER},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=CHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="contact != null">
+                #{contact,jdbcType=CHAR},
+            </if>
+            <if test="highSchool != null">
+                #{highSchool,jdbcType=CHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="china != null">
+                #{china,jdbcType=TINYINT},
+            </if>
+            <if test="isolationId != null">
+                #{isolationId,jdbcType=BIGINT},
+            </if>
+            <if test="dr != null">
+                #{dr,jdbcType=TINYINT},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.TalentGeneralPO">
+        update t_talent_general
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=CHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=CHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="birth != null">
+                birth = #{birth,jdbcType=DATE},
+            </if>
+            <if test="hometown != null">
+                hometown = #{hometown,jdbcType=CHAR},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=CHAR},
+            </if>
+            <if test="educId != null">
+                educ_id = #{educId,jdbcType=INTEGER},
+            </if>
+            <if test="workunit != null">
+                workunit = #{workunit,jdbcType=CHAR},
+            </if>
+            <if test="position != null">
+                `position` = #{position,jdbcType=CHAR},
+            </if>
+            <if test="socialWork != null">
+                social_work = #{socialWork,jdbcType=CHAR},
+            </if>
+            <if test="field != null">
+                field = #{field,jdbcType=CHAR},
+            </if>
+            <if test="natureId != null">
+                nature_id = #{natureId,jdbcType=INTEGER},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=CHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DECIMAL},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DECIMAL},
+            </if>
+            <if test="contact != null">
+                contact = #{contact,jdbcType=CHAR},
+            </if>
+            <if test="highSchool != null">
+                high_school = #{highSchool,jdbcType=CHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="china != null">
+                china = #{china,jdbcType=TINYINT},
+            </if>
+            <if test="isolationId != null">
+                isolation_id = #{isolationId,jdbcType=BIGINT},
+            </if>
+            <if test="dr != null">
+                dr = #{dr,jdbcType=TINYINT},
+            </if>
+            <if test="source != null">
+                `source` = #{source,jdbcType=BIGINT},
+            </if>
+        </set>
+        where tg_id = #{tgId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.TalentGeneralPO">
+        update t_talent_general
+        set `name`       = #{name,jdbcType=CHAR},
+            avatar       = #{avatar,jdbcType=CHAR},
+            sex          = #{sex,jdbcType=TINYINT},
+            birth        = #{birth,jdbcType=DATE},
+            hometown     = #{hometown,jdbcType=CHAR},
+            `location`   = #{location,jdbcType=CHAR},
+            educ_id      = #{educId,jdbcType=INTEGER},
+            workunit     = #{workunit,jdbcType=CHAR},
+            `position`   = #{position,jdbcType=CHAR},
+            social_work  = #{socialWork,jdbcType=CHAR},
+            field        = #{field,jdbcType=CHAR},
+            nature_id    = #{natureId,jdbcType=INTEGER},
+            phone        = #{phone,jdbcType=CHAR},
+            longitude    = #{longitude,jdbcType=DECIMAL},
+            latitude     = #{latitude,jdbcType=DECIMAL},
+            contact      = #{contact,jdbcType=CHAR},
+            high_school  = #{highSchool,jdbcType=CHAR},
+            create_time  = #{createTime,jdbcType=TIMESTAMP},
+            update_time  = #{updateTime,jdbcType=TIMESTAMP},
+            user_id      = #{userId,jdbcType=BIGINT},
+            china        = #{china,jdbcType=TINYINT},
+            isolation_id = #{isolationId,jdbcType=BIGINT},
+            dr           = #{dr,jdbcType=TINYINT},
+            `source`     = #{source,jdbcType=BIGINT}
+        where tg_id = #{tgId,jdbcType=BIGINT}
+    </update>
+
+    <select id="findGeneral" parameterType="java.util.Map" resultType="com.talentmap.common.bo.TalentGeneralBO">
+        /*一般乡贤*/
+        select * from
+        ((select
+        tg.tg_id as tgId, tg.`name` as `name`, avatar, sex, birth, hometown, `location`, e.name as educ, workunit,
+        `position`, field, n.`name` as nature, phone, longitude, latitude, contact, tg.high_school as highSchool,
+        tg.create_time as createTime,
+        tg.update_time as updateTime, tg.user_id as userId, dr, isource.name as dataSource, '0' focus,
+        IFNULL(tg.nature_id, 10000) as natureId, '1' isF, tg.isolation_id as isolationId
+        from t_talent_general as tg
+        left join t_nature n on tg.nature_id = n.nature_id
+        left join t_education e on tg.educ_id = e.educ_id
+        /*一般乡贤表关联隔离表，再关联tag表，查询一般乡贤的数据来源*/
+        left join t_isolation i on tg.isolation_id = i.isolation_id
+        left join t_isolation isource on tg.source = isource.isolation_id
+        left join t_tag tag on i.tag_id = tag.tag_id
+        where dr = 1
+        /*一般乡贤表去掉自己隔离id匹配的重点乡贤*/
+        and tg.tg_id not in
+        (select tf.tg_id from t_talent_focus tf
+        left join t_isolation i on tf.isolation_id = i.isolation_id
+        where tf.isolation_id = #{isolationId})
+
+        <if test="name != null and name != ''">
+            and trim(replace(tg.`name`,' ','')) like trim(replace ('%' #{name,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="location != null and location != ''">
+            and trim(replace(tg.`location` ,' ','')) like trim(replace ('%' #{location,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="workUnit != null and workUnit != ''">
+            and trim(replace(tg.workunit,' ','')) like trim(replace ('%' #{workUnit,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="field != null and field != ''">
+            and trim(replace(tg.field,' ','')) like trim(replace ('%' #{field,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="natureId != null and natureId != 0">
+            and tg.nature_id = #{natureId,jdbcType=INTEGER}
+        </if>
+        <if test="town != null and town != ''">
+            and trim(replace(tg.hometown,' ','')) like trim(replace ('%' #{town,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        /*0是市级*/
+        /*1区级，乡镇级*/
+        <if test="isolationType == 1">
+            and (i.isolation_id = #{isolationId} or i.belongs= #{isolationId} or tg.source=#{isolationId} )
+        </if>
+        /*2学校*/
+        <if test="isolationType == 2">
+            and tag.name = #{tagName}
+        </if>
+        <if test="source!=null and source.size>0">
+            and tg.source in
+            <foreach collection="source" open="(" close=")" separator="," item="iso_id">
+                #{iso_id}
+            </foreach>
+        </if>
+        <if test="source!=null and source.size==0">
+            and tg.source in ('')
+        </if>
+        )
+        union all
+        /*重要乡贤*/
+        (select
+        tg.tg_id as tgId, tg.`name` as `name`, avatar, sex, birth, hometown, `location`, e.name as educ, workunit,
+        `position`, field, n.`name` as nature, phone, longitude, latitude, contact, tg.high_school as highSchool,
+        tg.create_time as createTime,
+        tg.update_time as updateTime, tg.user_id as userId, dr, isource.name as dataSource, tf.tf_id as focus,
+        tg.nature_id as natureId, '0' isF, tg.isolation_id as isolationId
+        from t_talent_general as tg
+        left join t_nature n on tg.nature_id = n.nature_id
+        left join t_education e on tg.educ_id = e.educ_id
+        left join t_talent_focus tf on tg.tg_id = tf.tg_id
+        /*一般乡贤表关联隔离表，再关联tag表，查询一般乡贤的数据来源*/
+        left join t_isolation i on tg.isolation_id = i.isolation_id
+        left join t_isolation isource on tg.source = isource.isolation_id
+        left join t_tag tag on i.tag_id = tag.tag_id
+        where dr = 1
+        /*重要乡贤的隔离id筛选*/
+        and tf.isolation_id = #{isolationId}
+        <if test="name != null and name != ''">
+            and trim(replace(tg.`name`,' ','')) like trim(replace ('%' #{name,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="location != null and location != ''">
+            and trim(replace(tg.`location` ,' ','')) like trim(replace ('%' #{location,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="workUnit != null and workUnit != ''">
+            and trim(replace(tg.workunit,' ','')) like trim(replace ('%' #{workUnit,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="field != null and field != ''">
+            and trim(replace(tg.field,' ','')) like trim(replace ('%' #{field,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="natureId != null and natureId != 0">
+            and tg.nature_id = #{natureId,jdbcType=INTEGER}
+        </if>
+        <if test="town != null and town != ''">
+            and trim(replace(tg.hometown,' ','')) like trim(replace ('%' #{town,jdbcType=CHAR} '%' ,' ',''))
+        </if>
+        <if test="source!=null and source.size>0">
+            and tg.source in
+            <foreach collection="source" open="(" close=")" separator="," item="iso_id">
+                #{iso_id}
+            </foreach>
+        </if>
+        <if test="source!=null and source.size==0">
+            and tg.source in ('')
+        </if>
+        ))as talentAll order by isF asc, focus asc, natureId asc, isolationId asc
+    </select>
+
+    <select id="queryByNameAndIso" resultMap="BaseResultMap">
+        select tg_id, tg.`name`, avatar, sex, birth, hometown, `location`, educ_id, workunit, `position`,
+        social_work, field, nature_id, phone, longitude, latitude, contact, high_school,
+        create_time, update_time, user_id, china, tg.isolation_id, dr
+        from t_talent_general tg
+        left join t_isolation i on tg.isolation_id = i.isolation_id
+        where dr = 1
+        <if test="name != null and name != ''">
+            and tg.`name` = #{name,jdbcType=CHAR}
+        </if>
+        <if test="isolationId != null and isolationId != 1">
+            and (tg.isolation_id = 1 or tg.isolation_id = #{isolationId,jdbcType=BIGINT} or i.belongs =
+            #{isolationId,jdbcType=BIGINT})
+        </if>
+    </select>
+
+    <select id="queryByChinaAndIsoId" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+        select tg_id, tg.`name`, avatar, sex, birth, hometown, `location`, educ_id, workunit, `position`,
+        social_work, field, nature_id, phone, longitude, latitude, contact, high_school,
+        create_time, update_time, user_id, china, tg.isolation_id, dr
+        from t_talent_general tg
+        left join t_isolation i on tg.isolation_id = i.isolation_id
+        where dr = 1
+        <if test="china != null and china != 0">and china = #{china,jdbcType=TINYINT}</if>
+        <if test="isolationId != null and isolationId != 1">
+            and (tg.isolation_id = #{isolationId,jdbcType=BIGINT} or i.belongs = #{isolationId,jdbcType=BIGINT})
+        </if>
+    </select>
+
+    <select id="queryById" parameterType="java.lang.Long" resultMap="ResultMapGeneral">
+        select
+        <include refid="Talent_General_Column_List"/>
+        from
+        t_talent_general
+        left join
+        t_general_picture on t_talent_general.tg_id = t_general_picture.tg_id
+        where t_talent_general.tg_id = #{tgId,jdbcType=BIGINT} and dr = 1;
+    </select>
+
+    <insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="tgId">
+        insert into t_talent_general (tg_id, `name`, avatar,
+        sex, birth, hometown, `location`,
+        educ_id, workunit, `position`,
+        social_work, field, nature_id,
+        phone, longitude, latitude,
+        contact, high_school, create_time,
+        update_time, user_id, china,
+        isolation_id, dr, source) values
+        <foreach collection="list" item="po" index="index" separator=",">
+            (#{po.tgId,jdbcType=BIGINT}, #{po.name,jdbcType=CHAR}, #{po.avatar,jdbcType=CHAR},
+            #{po.sex,jdbcType=TINYINT}, #{po.birth,jdbcType=DATE}, #{po.hometown,jdbcType=CHAR},
+            #{po.location,jdbcType=CHAR},
+            #{po.educId,jdbcType=INTEGER}, #{po.workunit,jdbcType=CHAR}, #{po.position,jdbcType=CHAR},
+            #{po.socialWork,jdbcType=CHAR}, #{po.field,jdbcType=CHAR}, #{po.natureId,jdbcType=INTEGER},
+            #{po.phone,jdbcType=CHAR}, #{po.longitude,jdbcType=DECIMAL}, #{po.latitude,jdbcType=DECIMAL},
+            #{po.contact,jdbcType=CHAR}, #{po.highSchool,jdbcType=CHAR}, #{po.createTime,jdbcType=TIMESTAMP},
+            #{po.updateTime,jdbcType=TIMESTAMP}, #{po.userId,jdbcType=BIGINT}, #{po.china,jdbcType=TINYINT},
+            #{po.isolationId,jdbcType=BIGINT}, #{po.dr,jdbcType=TINYINT}, #{po.source,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+
+    <select id="queryTest" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_talent_general
+        where china is null and longitude is not null and latitude is not null
+    </select>
+</mapper>

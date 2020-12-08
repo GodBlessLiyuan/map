@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talentmap.common.mapper.RoleAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.talentmap.common.pojo.RoleAuthorityPO">
+    <id column="role_authority_id" jdbcType="BIGINT" property="roleAuthorityId" />
+    <result column="authority_name" jdbcType="CHAR" property="authorityName" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="authority_id" jdbcType="BIGINT" property="authorityId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_authority_id, authority_name, `status`, role_id, authority_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_role_authority
+    where role_authority_id = #{roleAuthorityId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_role_authority
+    where role_authority_id = #{roleAuthorityId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.talentmap.common.pojo.RoleAuthorityPO">
+    insert into t_role_authority (role_authority_id, authority_name, `status`, 
+      role_id, authority_id)
+    values (#{roleAuthorityId,jdbcType=BIGINT}, #{authorityName,jdbcType=CHAR}, #{status,jdbcType=TINYINT}, 
+      #{roleId,jdbcType=BIGINT}, #{authorityId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talentmap.common.pojo.RoleAuthorityPO">
+    insert into t_role_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleAuthorityId != null">
+        role_authority_id,
+      </if>
+      <if test="authorityName != null">
+        authority_name,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="authorityId != null">
+        authority_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleAuthorityId != null">
+        #{roleAuthorityId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityName != null">
+        #{authorityName,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null">
+        #{authorityId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talentmap.common.pojo.RoleAuthorityPO">
+    update t_role_authority
+    <set>
+      <if test="authorityName != null">
+        authority_name = #{authorityName,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null">
+        authority_id = #{authorityId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where role_authority_id = #{roleAuthorityId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talentmap.common.pojo.RoleAuthorityPO">
+    update t_role_authority
+    set authority_name = #{authorityName,jdbcType=CHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      authority_id = #{authorityId,jdbcType=BIGINT}
+    where role_authority_id = #{roleAuthorityId,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_role_authority
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into t_role_authority (role_authority_id, authority_name, `status`,
+      role_id, authority_id)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+        (#{item.roleAuthorityId,jdbcType=BIGINT}, #{item.authorityName,jdbcType=CHAR}, #{item.status,jdbcType=TINYINT},
+        #{item.roleId,jdbcType=BIGINT}, #{item.authorityId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" close="" open="" separator=";">
+      update t_role_authority
+      set `status` = #{item.status,jdbcType=TINYINT}
+      where role_authority_id = #{item.roleAuthorityId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <delete id="deleteByRoleId" parameterType="java.lang.Long">
+    delete from t_role_authority
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </delete>
+</mapper>
